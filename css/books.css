@@ -1,0 +1,67 @@
+.books-section .books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.book.box {
+    border: var(--border);
+    margin: 2rem 0;
+    overflow: hidden;
+    text-align: center;
+}
+
+.book .icons {
+    display: none;
+    
+}
+
+.book .image img {
+    width: 100%;
+    height: 250px;
+    
+    object-fit: cover;
+    
+}
+
+.book .content {
+    padding: 1rem;
+}
+
+.book .content .price {
+    margin: 10px 0;
+    font-size: 2rem;
+    color: var(--black);
+}
+
+.book .content .price span {
+    font-size: 1.4rem;
+    text-decoration: line-through;
+    margin-left: 10px;
+    color: var(--light-color);
+}
+
+.book .content .btn {
+    background-color: var(--green);
+    color: #fff;
+    padding: 10px 25px;
+    display: inline-block;
+    font-size: 1.6rem;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.book .content .btn:hover {
+    background-color: var(--dark-color);
+}
+
+.book-image {
+    width: 150px;
+   
+    height: 200px;
+   
+    object-fit: cover;
+   
+    border-radius: 4px;
+    
+}

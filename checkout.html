@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="css/checkout.css">
+</head>
+
+<body>
+    <div class="checkout-container">
+        <h1>Checkout</h1>
+        <form id="checkout-form">
+            <div class="form-group">
+                <label for="totalPrice">Total Price:</label>
+                <input type="text" id="totalPrice" name="totalPrice" readonly>
+            </div>
+            <div class="form-group">
+                <label for="quantity">Quantity:</label>
+                <input type="number" id="quantity" name="quantity">
+            </div>
+            
+            <div class="form-group">
+                <label for="cardName">Name on Card:</label>
+                <input type="text" id="cardName" name="cardName" required>
+            </div>
+            <div class="form-group">
+                <label for="cardNumber">Card Number:</label>
+                <input type="text" id="cardNumber" name="cardNumber" required pattern="\d{16}">
+            </div>
+            <div class="form-group">
+                <label for="expMonth">Expiry Month:</label>
+                <input type="number" id="expMonth" name="expMonth" required min="1" max="12">
+            </div>
+            <div class="form-group">
+                <label for="expYear">Expiry Year:</label>
+                <input type="number" id="expYear" name="expYear" required min="2020">
+            </div>
+            <div class="form-group">
+                <label for="cvv">CVV:</label>
+                <input type="text" id="cvv" name="cvv" required pattern="\d{3}">
+            </div>
+            <button type="submit" class="btn">Place Order</button>
+        </form>
+    </div>
+    <script src="js/checkout.js"></script>
+    <script>
+        window.onload = function () {
+            const params = new URLSearchParams(window.location.search);
+            let totalPrice = params.get('totalPrice');
+            let quantity = params.get('quantity');
+            const bookTitle = params.get('title');
+
+            
+            document.getElementById('totalPrice').value = totalPrice ? `$${parseFloat(totalPrice).toFixed(2)}` : '';
+            document.getElementById('quantity').value = quantity ? quantity : '';
+
+            
+            const form = document.getElementById('checkout-form');
+            form.action = '/process-checkout'; 
+            form.method = 'post';
+
+            
+            const hiddenTitleInput = document.createElement('input');
+            hiddenTitleInput.setAttribute('type', 'hidden');
+            hiddenTitleInput.setAttribute('name', 'title');
+            hiddenTitleInput.value = bookTitle ? decodeURIComponent(bookTitle) : '';
+            form.appendChild(hiddenTitleInput);
+        };
+    </script>
+
+    <a href="index.html" class="goto-homepage">
+        <i class="fas fa-home"></i> 
+    </a>
+</body>
+
+</html>
